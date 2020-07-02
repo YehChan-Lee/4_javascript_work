@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            border: 3px solid black;
+            position: relative;
+            transition: width .5s, height .5s, transform .5s;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        function move(selector,callback) {
+            var box = document.querySelector(selector);
+            box.style.position = 'absolute'
+            var target = 400;
+            var x = 0;
+            var fn  = setInterval(function () {
+                x+=10;
+                box.style.left = x+'px'
+                if(x>target){
+                    clearInterval(fn);
+                    box.tmp = callback;
+                    box.tmp();
+                }
+            },30)
+        }
+        move("#box",function(){
+            console.log(this)
+            this.style.backgroundColor = 'green';
+            this.style.color = 'yellow'
+            this.style.width = '400px'
+            this.style.height = '400px'
+            this.style.transform = 'rotate(360deg) scale(1)'
+        });
+        //흐름제어 : Promise 객체 사용
+    </script>
+</body>
+</html>

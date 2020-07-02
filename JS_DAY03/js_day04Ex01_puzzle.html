@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            width: 100px;
+        }
+
+        td:hover {
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+<h1>짝맞추기 게임</h1>
+<hr>
+<table id="puzzle" border="1" width="400" height="400">
+    <tr id="0">
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr id="1">
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr id="2">
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr id="3">
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+</table>
+<p id="timer">5초 후에 게임 시작</p>
+</body>
+<script>
+    var cells = document.getElementById('puzzle').getElementsByTagName('td');
+    var row = document.getElementById('puzzle').getElementsByTagName('tr');
+    var timer = document.getElementById('timer');
+    var postRow = "";
+    var postIdx = 0;
+    var nowRow = "";
+    var nowIdx = 0;
+    var tmpRow = "";
+    var tmpIdx = "";
+    var opencard1 = '';
+    var opencard2 = '';
+
+    function init() {
+        for (var i = 0; i < cells.length;) {
+            var index = Math.floor(Math.random() * 16);
+            if (cells[index].innerText == '.') {
+                var ch = String.fromCharCode(i % 8 + 65);
+                cells[index].style.background= 'url("imgs/'+i%8+'.png") left top/90px 90px no-repeat'
+                cells[index].innerText = ch;
+                cells[index].word = i%8;
+                i++;
+            }
+        }
+        var sec = 2;
+        var intertval = setInterval(function () {
+            sec--;
+            timer.innerText = sec + "초 후에 게임 시작";
+            if (sec == 0) {
+                clearInterval(intertval);
+            }
+        }, 1000);
+        //한번만 호출
+        setTimeout(start, 2000);
+    }
+
+
+    function start() {
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerText = "";
+            cells[i].onclick = function () {
+                if (opencard2 == '') {
+                    this.innerText = this.word;
+                    if (postRow == "") {
+                        postRow = this.parentElement.id;
+                        postIdx = this.cellIndex;
+                        tmpRow = postRow;
+                        tmpIdx = postIdx;
+                        opencard1 = this.word;
+                    } else {
+                        nowRow = this.parentElement.id;
+                        nowIdx = this.cellIndex;
+                        opencard2 = this.word;
+                        if (this.word == row.namedItem(postRow).children[postIdx].word) {
+                            opencard1 = '';
+                            opencard2 = '';
+                            timer.innerText = "정답";
+                            this.style.backgroundColor = 'skyblue';
+                            row.namedItem(postRow).children[postIdx].style.backgroundColor = 'skyblue';
+                        } else if (row.namedItem(postRow).children[postIdx].style.backgroundColor == 'skyblue') {
+                            return;
+                        } else {
+                            var time = 2;
+                            timer.innerText = "오답"
+                            var intertval2 = setInterval(function () {
+                                time--;
+                                timer.innerText = time + "초";
+                                if (time == 0) {
+                                    clearInterval(intertval2);
+                                    row.namedItem(nowRow).children[nowIdx].innerText = '';
+                                    row.namedItem(tmpRow).children[tmpIdx].innerText = '';
+                                    opencard1 = '';
+                                    opencard2 = '';
+                                }
+                            }, 1000);
+                        }
+                        postRow = "";
+                        postIdx = 0;
+                    }
+                }
+
+            }
+        }
+        timer.innerText = "START GAME!!"
+        console.dir(cells);
+    }
+
+    init();
+</script>
+</html>

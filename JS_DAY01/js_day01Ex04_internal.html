@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.button {
+            position: absolute;
+            background: violet;
+            color: yellow;
+            /*box-shadow: 3px 3px 3px black;*/
+            transition: box-shadow 0.5s, background-color 2s;
+        }
+    </style>
+
+</head>
+<body>
+<h3>마우스를 올려 보세요.</h3>
+<hr>
+<div class="button">나는 버튼이다.</div>
+<script>
+    var btn = document.querySelector('div.button');
+
+    // function mouseon() {
+    //     btn.style.boxShadow = '3px 3px 3px black';
+    // }
+    //
+    // function mouseout() {
+    //     btn.style.boxShadow = '';
+    // }
+    //DOM을 선택 할 때는 문서 요소 보다 나중에 실행 되어야 한다.
+    //자바스크립트는 인터프리터 언어이므로 순차적 실행됨.
+    console.dir(btn);
+    // btn.onmouseover = mouseon;
+    // btn.onmouseout = mouseout;
+
+    //익명 함수를 선언과 동시에 이벤트 핸들러로 초기화 해줄수 있다.
+    //콜백함수
+    btn.onmouseover = function(){
+        btn.style.boxShadow = '3px 3px 3px black';
+    }
+
+    btn.onmouseout = function(){
+        btn.style.boxShadow = '';
+    }
+</script>
+</body>
+</html>

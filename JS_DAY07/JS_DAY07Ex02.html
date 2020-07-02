@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //resolve는 다음 함수를 실행한다 reject는 예외처리 함수호출
+    var promise = new Promise(function (resolve, reject) {
+        console.log("첫번째 실행...준비")
+        resolve('hello');
+        reject();
+    })
+    promise.then(function (data) {
+        console.log("두번째 실행", data)
+        return new Promise(function (resolve, reject) {
+            resolve("next");
+        });
+    }).then(function (value) {
+        console.log("세번째 실행", value)
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("세번째 실행", value)
+                resolve("next");
+            }, 1000)
+        });
+    }).then(function () {
+        console.log("네번째 실행")
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("네번째 실행")
+                resolve("next");
+            }, 500)
+        });
+    }).catch(function (e) {
+        console.log("예외 처리 부분 : ", e)
+    }).finally(function () {
+        console.log("the end")
+    })
+</script>
+</body>
+</html>

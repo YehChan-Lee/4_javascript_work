@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            background: skyblue;
+            position: absolute;
+            color: yellow;
+            transition: 0.5s;
+        }
+    </style>
+    <script>
+        function mouseon() {
+            btn = document.querySelector('div.button');
+            btn.style.boxShadow = '5px 5px 3px navy';
+        }
+        function mouseout() {
+            btn.style.boxShadow = ''
+        }
+    </script>
+</head>
+<body>
+<h3>마우스를 올려 보세요</h3>
+<hr>
+<div class="button" onmouseover="mouseon()" onmouseout="mouseout()">나는 버튼입니다.</div>
+</body>
+</html>

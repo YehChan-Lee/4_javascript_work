@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.button {
+            position: absolute;
+            background: violet;
+            color: yellow;
+            /*box-shadow: 3px 3px 3px black;*/
+            transition: box-shadow 0.5s, background-color 2s;
+        }
+    </style>
+    <script>
+        //DOM : Document Object Model(문서 객체 모델)
+
+        function mouseon() {
+            //자바스크립트 내장 객체인 document를 통해서 요소 접근
+            btn = document.querySelector('div.button');
+            btn.style.boxShadow ='3px 3px 3px black';
+        }
+
+        function mouseout() {
+            //변수선언할때 var붙이면 지역변수 안붙이면 전역변수
+            btn.style.boxShadow ='';
+        }
+    </script>
+</head>
+<body>
+<h3>마우스를 올려 보세요.</h3>
+<hr>
+<!--자바스크립트 코드 작성 : 인라인, 인터널, 익스터널 모두 가능-->
+<div class="button" onmouseover="mouseon()" onmouseout="mouseout()">나는 버튼이다.</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>다음 빈 곳에 숨은 단어?
+<button id="btn">show/hide</button></h3>
+    <hr>
+    <ul>
+        <li>I (<span>love</span>) you</li>
+        <li>CSS is Cascading (<span>Style</span>) Sheet</li>
+        <li>응답하라 (<span>1988</span>).</li>
+    </ul>
+    <script>
+        var span = document.getElementsByTagName('span');
+        var btn = document.getElementById('btn')
+        var flag = false;
+        btn.onclick = function () {
+            if(flag == false){
+                for(var i = 0;span.length;i++){
+                    span[i].style.visibility = "hidden";
+                    flag = true;
+                }
+            }else{
+                for(var i = 0;span.length;i++){
+                    span[i].style.visibility = "";
+                    flag = false;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

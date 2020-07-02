@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            background-color: pink;
+            border: 1px solid red;
+            width: 170px;
+            height: 55px;
+        }
+        #box div{
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 40px;
+        }
+        #result{
+            color: red;
+        }
+    </style>
+    <script>
+        var numbers = null;
+        var result = null;
+        var init = function () {
+            var numArr = [];
+            numbers.forEach(function (item,index,list){
+                item.onclick = function () {
+                    numArr.push(Math.floor(Math.random()*3));
+                    this.innerText = numArr[index];
+                    this.onclick = null;
+
+                    if(numArr.length == 3){
+                        if(numArr[0] == numArr[1] && numArr[1] == numArr[2]){
+                            result.innerText = 'Success'
+                        }else{
+                            result.innerText = 'Fail'
+                        }
+                    }
+                };
+            });
+
+        }
+        window.onload = function () {
+            numbers = document.querySelectorAll('#box div');
+            result = document.getElementById('result');
+            init();
+            result.onclick = function () {
+                init();
+                for(var i in numbers){
+                    numbers[i].innerText = '0'
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>겜블링 게임</h2>
+<div>
+    각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다.
+    모두가 같은 수가 나오면 승리합니다.
+    <hr>
+    <div id="box">
+        <div>0</div>
+        <div>0</div>
+        <div>0</div>
+    </div>
+    <div id="result"></div>
+</div>
+</body>
+</html>

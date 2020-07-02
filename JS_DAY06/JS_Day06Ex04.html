@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //변수의 지역성
+    // var userName = '김'
+    function aaa() {
+        var userName = '이'
+        console.log("user name : " ,userName)
+    }
+    function bbb() {
+        for(var i=0;i<5;i++){
+            var number = i;
+        }
+        //var로 선언된 변수는 scope가 함수단위이다.
+        console.log("number : ",number);
+    }
+    function ccc() {
+        for(var i=0;i<5;i++){
+            let number = i;
+        }
+        //var로 선언된 변수는 scope가 함수단위이다.
+        console.log("number : ",number);
+    }
+    aaa();
+    bbb();
+    ccc();
+</script>
+</body>
+</html>

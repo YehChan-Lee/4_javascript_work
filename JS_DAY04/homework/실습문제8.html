@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#color{
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+        }
+        div{
+            display: inline-block;
+            width: 150px;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>17개의 CSS2 색이름과 색</h3>
+    <hr>
+    <div id="color"></div>
+    <script>
+        var colorArr = [];
+        for(var i=0;i<16;i++){
+            var a = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            var c = Math.floor(Math.random()*256);
+            colorArr.push("rgb("+a+","+b+","+c+")");
+        }
+        var color = document.getElementById('color');
+        for(var i=0;i<colorArr.length;i++){
+            var tmpcolor = colorArr[i];
+            // color.innerHTML += "<div style='background-color:" + tmpcolor +"'>" + tmpcolor + "</div>";
+           document.write("<div style='background-color:" + tmpcolor +"'>" + tmpcolor + "</div>");
+        }
+    </script>
+</body>
+</html>

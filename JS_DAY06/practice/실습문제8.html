@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h3>클릭하면 90도 회전합니다.</h3>
+    <hr>
+    <img src="imgs/3.png" alt="">
+    <script>
+        var img = document.getElementsByTagName('img')[0];
+        var scale = 2;
+        // img.onclick = function () {
+        //     this.style.transform = 'rotate(90deg)';
+        // }
+        img.onclick = function () {
+            this.style.transform = 'scale('+scale+',1)';
+            scale++;
+            if(scale == 5){
+                scale = 2;
+            }
+        }
+    </script>
+</body>
+</html>

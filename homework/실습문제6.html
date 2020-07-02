@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function big(a,b) {
+        var x = parseInt(a);
+        var y = parseInt(b);
+        if(x>y){
+            return x;
+        }else{
+            return y;
+        }
+    }
+    function pr(a,num) {
+        for(i=0;i<num;i++){
+            document.write(a);
+        }
+    }
+</script>
+<script>
+    var b = big("625","555");
+    document.write("큰수 = " + b);
+    document.write("<br>");
+    pr("%",5);
+</script>
+</body>
+</html>

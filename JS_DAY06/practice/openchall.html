@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            border: 1px solid black;
+            background-color: bisque;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            padding: 3px;
+            width: 140px;
+        }
+
+        li {
+            position: relative;
+            margin: 1px;
+            list-style: none;
+            width: 40px;
+            height: 60px;
+            float: left;
+            font-size: 30px;
+            text-align: center;
+            line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+<h3>겜블링 게임</h3>
+<p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</p>
+<hr>
+<div id="game">
+    <ul id="list">
+        <li id="1">0</li>
+        <li id="2">0</li>
+        <li id="3">0</li>
+    </ul>
+</div>
+<script>
+    var cnt = 0;
+    var game1 = document.getElementById('1');
+    var game2 = document.getElementById('2');
+    var game3 = document.getElementById('3');
+
+    game1.onclick = function () {
+        this.innerText = Math.floor(Math.random() * 3);
+        cnt++;
+        this.onclick = false;
+    }
+    game2.onclick = function () {
+        this.innerText = Math.floor(Math.random() * 3);
+        cnt++;
+        this.onclick = false;
+    }
+    game3.onclick = function () {
+        this.innerText = Math.floor(Math.random() * 3);
+        cnt++;
+        this.onclick = false;
+        if (cnt == 3) {
+            if (game1.innerText == game2.innerText && game2.innerText == game3.innerText) {
+                console.log("성공")
+            }else{
+                console.log("실패")
+            }
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

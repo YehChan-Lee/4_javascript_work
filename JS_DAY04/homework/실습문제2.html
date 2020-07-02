@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>정수 5개를 입력받아 역순으로 출력</h3>
+    <hr>
+    <p>입력된 수의 배열</p>
+    <p id="post"></p>
+    <hr>
+    <p>역순으로 재정렬된 배열</p>
+    <p id="now">
+    </p>
+    <script>
+        var post = document.getElementById('post');
+        var now = document.getElementById('now');
+        var arr = [];
+        for(var i=0;i<5;i++){
+            var num = parseInt(prompt("정수 입력 : ",""));
+            arr.push(num);
+            post.innerHTML += num + " ";
+        }
+        for(var i=0;i<5;i++){
+            var num = arr.pop();
+            now.innerHTML += num + " ";
+        }
+    </script>
+</body>
+</html>

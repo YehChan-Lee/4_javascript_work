@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+        td:hover {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+<h1>짝맞추기 게임</h1>
+<hr>
+<table id="puzzle" border="1" width="400" height="400">
+    <tr>
+        <td width="100"></td>
+        <td width="100"></td>
+        <td width="100"></td>
+        <td width="100"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<p id="timer">5초 후에 게임 시작!</p>
+
+<script>
+    var cells = document.getElementById('puzzle').getElementsByTagName("td");
+    var timer = document.getElementById("timer");
+    var backImgArr = [];
+    var startSec = 0;
+    var endSec = 0;
+    var cnt =0;
+    for(var i=0; i<cells.length; i++) {
+        backImgArr[i] = new Image(100,100)
+        backImgArr[i].src = 'imgs/뒷면.jpg';
+        cells[i].i= i;
+        cells[i].appendChild(backImgArr[i]);
+    }
+    var srcArr = ['0.png','1.png','2.png','3.png',
+        '4.png','5.png','6.png','7.png',];
+
+    function init() {
+        for(var i=0; i<cells.length; ) {
+            var index = Math.floor(Math.random()*16);
+            if(cells[index].word == null) {
+                // cells[index].i = index;
+                var idx = index%8;
+                cells[index].idx = idx;
+                cells[index].word = 'imgs/'+srcArr[i%8];
+                backImgArr[index].src= 'imgs/'+srcArr[i%8];
+                i++;
+            }
+        }
+        // 5호 후에 감추기
+        var sec = 5;
+        // 반복 호출
+        var interval = setInterval(function() {
+            sec--;
+            timer.innerText = sec + "초 후에 게임 시작!";
+            if(sec == 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+        // 한번만 호출
+        setTimeout(start, 2000);
+    }
+    function start() {
+        startSec = Date.parse(new Date());
+        for(var i=0; i<cells.length; i++) {
+            // 이미지로 초기화 하기
+            //cells[i].innerText = "";
+            backImgArr[i].src =  'imgs/뒷면.jpg';
+            cells[i].onclick = function() {
+                backImgArr[this.i].src = this.word;
+                compare(this);
+            };
+        }
+
+        timer.innerText = 'START GAME!!';
+        //console.dir(cells);
+    }
+
+    var firstCell = null;
+    function compare(cell) {
+        //체크하기
+        // 1. 첫번째 클릭한 셀의 글자와 두번째 클릭한 셀의 글자 비교
+        // 1-1. 첫번째 클릭한 것을 구분할것.
+        // 1-2. 첫번째 클릭한 것을 다시 클릭 안되게 할것.
+        // 2. 비교 후 같은 값의 셀이면 그대로 두고
+        // 3. 아니면 원상 복구 한다.
+        if(firstCell == null) {
+            //console.log('첫번째 셀입니다.');
+            firstCell = cell;
+        } else {
+            if(firstCell == cell) {
+                console.log('누른걸 또 눌렀습니다!');
+                return;
+            }
+            //console.log('두번째 셀입니다.');
+            if(firstCell.word == cell.word) {
+                timer.innerText = "정답입니다!";
+                // 정답이므로 이벤트를 제거 한다.
+                firstCell.onclick = null;
+                cell.onclick = null;
+                // 초기화
+                firstCell = null;
+                cnt++;
+                if(cnt == 8){
+                    console.log('게임오버')
+                    endSec = Date.parse(new Date());
+                    timer.innerText = "수행 시간 : " + (endSec - startSec)/1000 + '초';
+                }
+            } else {
+                timer.innerTest = "오답입니다.";
+                setTimeout(function () {
+                    backImgArr[firstCell.i].src = 'imgs/뒷면.jpg';
+                    backImgArr[cell.i].src =  'imgs/뒷면.jpg';
+                    firstCell = null;
+                }, 300);
+            }
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>

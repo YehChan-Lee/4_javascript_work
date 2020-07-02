@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--아래 phoneBook클래스를 활용한 입력, 출력-->
+이름 입력 : <input type="text" id="userName" name="userName"><br>
+번호 입력 : <input type="text" id="phone" name="phone"><br>
+<input type="button" value="입력" id="inputbtn">
+<input type="button" value="출력" id="outputbtn">
+<hr>
+<div id="phonebook_list"></div>
+<script type="text/template" id="Tmp">
+<table border="1">
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>전화번호</th>
+    </tr>
+    <%
+    for(var i=0; i<list.length; i++) {
+    var person = list[i];
+    %>
+    <tr>
+        <td><%=person.idx%></td>
+        <td><%=person.username%></td>
+        <td><%=person.phone%></td>
+    </tr>
+    <% } // end of for %>
+</table>
+</script>
+<script src="../js/underscore.js"></script>
+<script>
+    function Person(idx,username,phone) {
+        this.idx = idx;
+        this.username = username;
+        this.phone = phone;
+    }
+    function PhoneBook() {
+        this.pArr = [];
+    }
+    PhoneBook.prototype.append = function (person) {
+        this.pArr.push(person);
+    }
+    PhoneBook.prototype.getAll = function () {
+        return this.pArr;
+    }
+    var Tmp = document.getElementById('Tmp');
+    var compiled = _.template(Tmp.innerHTML);
+    var username = document.getElementById('userName');
+    var phone = document.getElementById('phone')
+    var btn = document.getElementById('inputbtn');
+    var outbtn = document.getElementById('outputbtn');
+    var i = 0;
+
+    var phonebook = new PhoneBook();
+    btn.onclick = function () {
+        user = username.value;
+        username.value = "";
+        ph = phone.value;
+        phone.value = "";
+        phonebook.append(new Person(i,user,ph));
+        i++;
+    }
+    outbtn.onclick = function () {
+        document.getElementById('phonebook_list').innerHTML = compiled({list: phonebook.getAll()});
+    }
+
+</script>
+
+</body>
+</html>

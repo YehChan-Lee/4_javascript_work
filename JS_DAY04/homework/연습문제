@@ -1,0 +1,44 @@
+1. 3번
+2. 4번
+3. 4번
+4. 2번
+5. money = new Array(3);
+money[0]
+money[1]
+money[2]
+money.length
+sum/money.length
+
+6.4번
+7.(1)15
+(2)b
+(3)2
+(4)HTML5 Programming
+(5)P
+8.random()은 0부터1까지이므로 *10하고 +1을하면 1부터 11까지 정수를 랜덤생성한다.
+Math.floor(Math.random() * 10) + 1;
+9.var student = {
+id = 1;
+name = "kitae";
+grade = 3.9;
+}
+
+10.
+1)var box = new Object();
+box.color = "red";
+box.size = 10;
+box.amount = 0;
+box.fill = fill;
+box.consume = consume;
+function fill(){
+this.amount += 2;
+}
+function consume(){
+this.amount -= 2;
+}
+2)box.fill();
+document.write(box.amount);
+box.consume();
+document.write(box.amount);
+
+3)0

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background:-webkit-gradient(linear, 80% 20%, 41% 96%, from(skyblue), to(aliceblue))
+        }
+    </style>
+</head>
+<body>
+<h3>자바스크립트란?
+<button id="border">border</button>
+<button id="pbtn">p</button></h3>
+<hr>
+<p>자바스크립트는 웹 프로그래밍 언어로서 웹 페이지를 동적 변경시킬 수 있다.</p>
+<p><span id="mySpan">C언어</span>를 아는 사용자는 빠르게 학습할 수 있다.</p>
+<p>이벤트 등 GUI 프로그래밍에 필요한 요소들이 있어 학습에 약간의 어려움이 있다.</p>
+<script>
+    var borderbtn = document.getElementById('border')
+    var pbtn = document.getElementById('pbtn')
+    var span = document.getElementById('mySpan')
+    var tmp = document.getElementsByTagName('p');
+    var flag = false;
+    borderbtn.onclick = function () {
+        if (flag == true) {
+            span.style.border = "2px dotted violet"
+            flag = false;
+        } else {
+            span.style.border = ""
+            flag = true;
+        }
+    }
+    pbtn.onclick = function () {
+        alert(tmp.length)
+    }
+</script>
+</body>
+</html>

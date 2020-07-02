@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--CDN : 웹상에 존재하는 라이브러리를 직접 사용-->
+    <script src="http://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+<p id="box"></p>
+<script>
+    var fish = ['오징어','꼴뚜기','대구','명태','거북이'];
+    var htmlTag = "<ul>";
+    var person = {name:'HONG',phone:'010-1111-1111'};
+
+    fish.forEach(function (fish) {
+        htmlTag+="<li>" + fish+ "</li>";
+    });
+
+    // document.querySelector('#box').innerHTML = htmlTag;
+    $('#box').html(htmlTag);
+
+    console.log(typeof fish);
+    console.log(Array.isArray(fish))
+    console.log(fish instanceof Array)
+    console.log(person instanceof Array)
+</script>
+</body>
+</html>

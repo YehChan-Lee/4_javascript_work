@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var startSec = Date.parse(new Date());
+        var sum = 0;
+        for(var i=0;i<100000000;i++){
+            sum+=i;
+        }
+        var endSec = Date.parse(new Date());
+        console.log(sum);
+        console.log("실행시간 : " + (endSec - startSec));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)http://localhost:63342/4_javascript_work/JS_DAY03/js_day03Ex01.html?_ijt=5ve4ljntmufbg2to11ca96v6rb -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            width: 100px;
+        }
+
+        td:hover {
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+<h1>짝맞추기 게임</h1>
+<hr>
+<table id="puzzle" border="1" width="400" height="400">
+    <tbody><tr id="0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="1">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>G</td>
+    </tr>
+    <tr id="2">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>B</td>
+    </tr>
+    <tr id="3">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</tbody></table>
+<p id="timer">0초</p>
+
+<script>
+    var cells = document.getElementById('puzzle').getElementsByTagName('td');
+    var row = document.getElementById('puzzle').getElementsByTagName('tr');
+    var timer = document.getElementById('timer');
+
+    function init() {
+        for (var i = 0; i < cells.length;) {
+            var index = Math.floor(Math.random() * 16);
+            if (cells[index].innerText == '.') {
+                var ch = String.fromCharCode(i % 8 + 65);
+                cells[index].innerText = ch;
+                cells[index].word = ch;
+                i++;
+            }
+        }
+        var sec = 2;
+        var intertval = setInterval(function () {
+            sec--;
+            timer.innerText = sec + "초 후에 게임 시작";
+            if (sec == 0) {
+                clearInterval(intertval);
+            }
+        }, 1000);
+        //한번만 호출
+        setTimeout(start, 2000);
+    }
+
+    var postRow = "";
+    var postIdx = 0;
+    var nowRow = "";
+    var nowIdx = 0;
+    var tmpRow = "";
+    var tmpIdx = "";
+    var state = 0;
+
+    function start() {
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerText = "";
+            if (state == 0) {
+                cells[i].onclick = function () {
+                    this.innerText = this.word;
+                    if (postRow == "") {
+                        postRow = this.parentElement.id;
+                        postIdx = this.cellIndex;
+                        tmpRow = postRow;
+                        tmpIdx = postIdx;
+                    } else {
+                        state = 1;
+                        nowRow = this.parentElement.id;
+                        nowIdx = this.cellIndex;
+                        if (this.word == row.namedItem(postRow).children[postIdx].word) {
+                            timer.innerText = "정답";
+                            this.style.backgroundColor = 'skyblue';
+                            row.namedItem(postRow).children[postIdx].style.backgroundColor = 'skyblue';
+                        } else if (row.namedItem(postRow).children[postIdx].style.backgroundColor == 'skyblue') {
+                            timer.innerText = "이미 선택한 셀입니다."
+                            return;
+                        } else {
+                            var time = 2;
+                            timer.innerText = "오답"
+                            var intertval2 = setInterval(function () {
+                                time--;
+                                timer.innerText = time + "초";
+                                if (time == 0) {
+                                    state = 0;
+                                    clearInterval(intertval2);
+                                    row.namedItem(nowRow).children[nowIdx].innerText = '';
+                                    row.namedItem(tmpRow).children[tmpIdx].innerText = '';
+                                }
+                            }, 1000);
+                        }
+                        postRow = "";
+                        postIdx = 0;
+                    }
+                }
+            }
+
+        }
+        timer.innerText = "START GAME!!"
+        console.dir(cells);
+    }
+
+    init();
+</script>
+</body></html>

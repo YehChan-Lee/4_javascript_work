@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="bg">
+    <h3>일요일은 Pink, 다른요일은 gold배경</h3>
+    <hr>
+    <script>
+        var bg = document.getElementById('bg');
+        var day3 = ["일","월","화","수","목","금","토"]
+        var date = new Date();
+        var day1 = date.getDate();
+        var day2 = date.getDay();
+        document.write("오늘 : "+ day1 + "일" + day3[day2]+"요일")
+        if(day2 == 0){
+            bg.style.background = 'gold'
+        }else{
+            bg.style.background = 'pink'
+        }
+    </script>
+</body>
+</html>

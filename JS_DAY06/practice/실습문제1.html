@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>라면을 끓이는 순서</h3>
+    <hr>
+    <div id="ollist">
+    <ol type="A">
+        <li>물을 끓인다</li>
+        <li>라면과 스프를 넣는다</li>
+        <li>파를 썰어 넣는다</li>
+        <li>5분후 <strong>맛있게</strong>먹는다.</li>
+    </ol>
+    </div>
+    <script>
+        var list = document.querySelectorAll('li')
+        var olbox = document.getElementsByTagName('ol')[0];
+        for(var i=0;i<list.length;i++){
+            list[i].style.color = 'green'
+        }
+        olbox.onclick = function () {
+            this.style.background = 'yellowgreen'
+        }
+    </script>
+</body>
+
+</html>

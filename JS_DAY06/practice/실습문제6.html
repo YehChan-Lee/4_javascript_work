@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>innerHTML</h3>
+    <hr>
+<div id = "text">이번 여름에는 어디로 여행을 갈까요?</div>
+    <script>
+        var textbox = document.getElementById('text');
+        var str;
+        textbox.onclick = function () {
+            str = prompt("HTML 텍스트 혹은 그냥 텍스트를 입력")
+            textbox.innerHTML = str;
+        }
+    </script>
+</body>
+</html>
+<!--푸른바다 <span style='background-color:skyblue'>제주도</span>로 갑시다.-->

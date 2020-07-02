@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //함수를 배열에 담아보기.
+    var _factory = [
+        function () {
+            return 'Hello'
+        },
+        function () {
+            return 'World'
+        },
+        function () {
+            return 'Apple'
+        }
+    ]
+    for(var i=0;i<_factory.length;i++){
+        console.log(_factory[i]())
+    }
+</script>
+
+</body>
+</html>

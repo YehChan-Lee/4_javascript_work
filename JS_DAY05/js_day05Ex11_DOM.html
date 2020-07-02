@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            position: relative;
+            padding: 0;
+            width: 100px;
+            top: 0;
+            margin: 0;
+            float: left;
+        }
+        li {
+            border: 1px solid blue;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 10px;
+        }
+        div#game {
+            border: 1px solid green;
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<h1>햄버거 하우스 게임</h1>
+<div id="game">
+</div>
+<input type="button" id="btn" value="START">
+<input type="button" id="stopbtn" value="STOP">
+<script>
+    var btn = document.getElementById('btn');
+    var stopbtn = document.getElementById('stopbtn');
+    var licolor = document.getElementById('game').getElementsByTagName('ul')
+    var Arr = [];
+    var stopidx = 0;
+    function startbtn(tmp) {
+        tmp.y = 0;
+        tmp.interval = setInterval(function () {
+            tmp.y += tmp.speed;
+            if (tmp.y >1000) {
+                tmp.y = 0;
+            }
+            tmp.cardGrp.style.top = -tmp.y + 'px'
+            stopbtn.onclick = function () {
+                stopidx++;
+                clearInterval(tmp.interval);
+                var num = 0;
+                if(tmp.y%100>50){
+                    num = 100-tmp.y%100;
+                    tmp.cardGrp.style.top = -(tmp.y+num) + 'px';
+                    tmp.no = (tmp.y+num)/100 + 1;
+                }else{
+                    num = tmp.y%100
+                    tmp.cardGrp.style.top = -(tmp.y-num) + 'px';
+                    tmp.no = (tmp.y-num)/100+1 ;
+                }
+                if(stopidx == 3){
+                    if(a.no == b.no && b.no == c.no){
+                        alert("성공");
+                    }else{
+                        alert("실패");
+                    }
+                }
+            }
+        }, 50);
+    }
+    function mkCardGrp(element) {
+        this.game = document.getElementById(element);
+        this.speed = 0;
+        this.no = 0;
+        this.cardGrp = document.createElement("ul");
+        this.game.appendChild(this.cardGrp);
+
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1;
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item);
+        var tmp = this;
+        Arr.push(tmp);
+    }
+    var start = false;
+    btn.onclick = function () {
+        if (start == false) {
+            start = true;
+            var tmp1;
+            for(var i =0;i<3;i++){
+                tmp1 = Arr.pop();
+                startbtn(tmp1);
+            }
+        }
+    }
+    var a = new mkCardGrp("game");
+    var b = new mkCardGrp("game");
+    var c = new mkCardGrp("game");
+    a.speed = 5;
+    b.speed = 10;
+    c.speed = 15;
+</script>
+</body>
+</html>

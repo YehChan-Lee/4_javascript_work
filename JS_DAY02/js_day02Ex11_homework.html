@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #resultList{
+            border: 1px solid blue;
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="text" name="a" id="a">
+    <input type="text" name="b" id="b">
+    <select name="oper" id="oper">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" name="result" id="result">
+    <input type="button" class="button" value="결과 추가 하기">
+</div>
+
+<select name="search" id="search">
+    <option value="Pass">Pass</option>
+    <option value="Fail">Fail</option>
+</select>
+<p>날짜 : 2020년 6월 25일</p>
+<div id="resultList">
+<!--    10 + 5 = 15 (Pass)     <&#45;&#45;color blue;-->
+<!--    10 - 3 = 6  (Fail : 7) <&#45;&#45;color red;-->
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
+<script>
+    var resultList = document.getElementById('resultList');
+    var resultlist = [];
+    btn = document.querySelector('input.button');
+    function getDate(){
+        var today = new Date();
+        var hour = today.getHours();
+        var minutes = today.getMinutes();
+        time = hour+"시"+minutes+"분";
+        return time;
+    }
+    btn.onclick = function calc() {
+        var a = parseInt(document.getElementById('a').value);
+        var b = parseInt(document.getElementById('b').value);
+        var res = parseInt(document.getElementById('result').value);
+        var oper = document.getElementById('oper').options[document.getElementById('oper').selectedIndex].value;
+        switch (oper) {
+            case "+":
+                result = a+" "+oper+" "+b+" = "+ res;
+                if(res == (a+b)){
+                    result+= "  " + "(Pass)"
+                }else{
+                    result+= "  " + "(Fail : "+(a+b)+")";
+                }
+                break;
+            case "-":
+                result = a+" "+oper+" "+b+" = "+res;
+                if(res == (a-b)){
+                    result+= "  " + "(Pass)"
+                }else{
+                    result+= "  " + "(Fail : "+(a-b)+")";
+                }
+                break;
+            case "*":
+                result = a+" "+oper+" "+b+" = "+res;
+                if(res == (a*b)){
+                    result+= "  " + "(Pass)"
+                }else{
+                    result+= "  " + "(Fail : "+(a*b)+")";
+                }
+                break;
+            case "/":
+                result = a+" "+oper+" "+b+" = "+res;
+                if(res == (a/b)){
+                    result+= "  " + "(Pass)"
+                }else{
+                    result+= "  " + "(Fail : "+(a/b)+")";
+                }
+                break;
+        }
+        resultlist.push(result +"  "+getDate()+ "<br>");
+        resultList.innerHTML = "";
+        resultlist.forEach(function (value) {
+            resultList.innerHTML += value;
+        })
+    }
+    var compiled = _.template("hello: <%= name %>");
+    document.getElementById('demo').innerHTML = compiled({name: 'moe'});
+
+    var search = document.getElementById('search');
+    search.value = '';
+    console.dir(search);
+    search.onchange = function (){
+        var select = search.value;
+        var resultArr = resultlist.filter(function (resultlist) {
+            return resultlist.indexOf(select) != -1;
+        });
+        resultList.innerHTML = "";
+        resultArr.forEach(function (value) {
+            resultList.innerHTML+=value;
+        })
+    };
+</script>
+</body>
+</html>

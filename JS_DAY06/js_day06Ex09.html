@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //함수를 인수로 넘기기 - 콜백함수
+    function play(fn) {
+        console.log('PlayFn 호출');
+        if(typeof fn == 'function'){
+            fn('playfn에서 보낸 메세지');
+        } else{
+            console.log(fn)
+        }
+
+    }
+    function aaa() {
+        console.log('aaa함수 호출');
+    }
+    play(function (message) {
+        console.log('익명함수 호출')
+        console.log('message = > ',message)
+    });
+    play(aaa);
+    play("korea")
+</script>
+</body>
+</html>

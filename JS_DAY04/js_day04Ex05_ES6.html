@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //ES6 방식의 클래스 사용
+    class Calc {
+        constructor() {
+            this.result = 0;
+        }
+        add(x,y){
+            this.result = x+y;
+        }
+        getResult(){
+            return this.result;
+        }
+    }
+    class CalcSub extends Calc{
+        constructor() {
+            //상속받으면 super호출 필수
+            super();
+        }
+        div(x,y){
+            this.result = x/y;
+        }
+    }
+
+    let calc = new Calc();
+    calc.add(10,15);
+    var value = calc.getResult();
+    document.write("value => " + value + "<br>");
+
+    let calc2 = new CalcSub();
+    calc2.div(10,4);
+    let value2 = calc2.getResult();
+    document.write("value =>" + value2)
+</script>
+</body>
+</html>

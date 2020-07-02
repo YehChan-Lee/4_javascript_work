@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //함수 - 자바스크립트의 함수는 참조가 가능하다.
+    //함수를 변수에 저장 가능하다.
+    function myFn() {
+        console.log("Hello World")
+    }
+    myFn();
+
+    //변수에 함수를 담았다.
+    var myFn2 = function () {
+        console.log('MyFn2 함수')
+    }
+    var reFn = myFn;
+    reFn();
+</script>
+</body>
+</html>

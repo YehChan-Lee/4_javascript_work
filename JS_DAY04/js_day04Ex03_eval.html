@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //JSP 서버에서 JSON 형식의 문자열로 전송
+        //Ajax를 이용 비동기 호출을 사용한다.
+        var jsonstr = '{"name":"HONG","age":"25"}'
+
+        //eval은 수식을 계산해주기도 하지만 객체를 써주기도한다.
+        var obj = eval('('+jsonstr+')');
+        var jsonobj = JSON.parse(jsonstr)
+        console.log(jsonobj)
+        console.log("name : " + obj.name);
+        console.log("age : " + obj.age);
+
+        var str = JSON.stringify(jsonobj);
+        console.log(str)
+    </script>
+</head>
+<body>
+
+</body>
+</html>
