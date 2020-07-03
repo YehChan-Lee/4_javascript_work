@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <input type="text" name = "s">
+    <input type="button" id="btn" value="test">
+</form>
+<div id="div" style="color:orange"></div>
+<script>
+    var btn = document.getElementById('btn');
+    var div = document.getElementById('div');
+    document.body.addEventListener('click',capture,true);
+    document.body.addEventListener('click',capture,false);
+
+    btn.addEventListener('click',buble,false);
+
+    function capture(e) {
+        var obj = e.currentTarget;
+        var tagName = obj.tagName;
+        div.innerHTML += "<br>capture 단계 : " + tagName + "태그" + e.type + "이벤트";
+    }
+    function buble(e) {
+        var obj = e.currentTarget;
+        var tagName = obj.tagName;
+        div.innerHTML += "<br>buble 단계 : " + tagName + "태그" + e.type + "이벤트";
+    }
+</script>
+</body>
+</html>

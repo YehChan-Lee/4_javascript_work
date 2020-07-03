@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div,p,button{
+            border: 1px solid black;
+            padding: 5px;
+            margin: 5px;
+            width: 200px;
+            transition: width .5s , background-color 0.5s;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var btnArea = document.getElementById('btnArea');
+            btnArea.onmouseenter = function (e) {
+                btnArea.style.width = "400px"
+                e.currentTarget.style.background = 'yellow'
+            }
+            btnArea.onmouseleave = function (e) {
+                btnArea.style.width = "200px"
+                e.currentTarget.style.background = 'white'
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="btnArea">
+    <div>
+        <p>
+            <button>버튼입니다.</button>
+        </p>
+    </div>
+</div>
+</body>
+</html>
