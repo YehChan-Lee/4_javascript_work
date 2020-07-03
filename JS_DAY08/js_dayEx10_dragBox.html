@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#obj {
+            border: 5px solid darkred;
+            color: darkred;
+            border-radius: 5px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            font-size: 18pt;
+            text-align: center;
+            line-height: 120px;
+            box-shadow: 5px 5px 5px navy;
+            transition: background-color .5s;
+        }
+        div#target {
+            border: 1px dotted gray;
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var obj = document.getElementById('obj');
+            var target = document.getElementById('target');
+            console.log(target.offsetLeft, target.offsetTop);
+            obj.onmousedown = function (e) {
+                obj.xgap = e.clientX-obj.offsetLeft;
+                obj.ygap = e.clientY-obj.offsetTop;
+                window.onmousemove = function (e2) {
+                    obj.style.left = (e2.clientX - obj.xgap) + 'px';
+                    obj.style.top = (e2.clientY -obj.ygap) + 'px';
+                };
+            };
+            window.onmouseup= function (e) {
+                window.onmousemove = null
+                console.log('마우스 업', obj.offsetLeft , obj.offsetTop);
+                var cX = obj.offsetLeft+(obj.offsetWidth/2);
+                var cY = obj.offsetTop+(obj.offsetHeight/2);
+                console.log(cX, cY)
+
+                if((cX>=target.offsetLeft && cX<=(target.offsetLeft+130)) && (cY>=target.offsetTop && cY<=(target.offsetTop+130))){
+                    obj.style.left = target.offsetLeft + 'px';
+                    obj.style.top = target.offsetTop + 'px';
+                    document.body.bgColor = 'skyblue'
+                }else{
+                    document.body.bgColor = 'white'
+                }
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div id="target">가즈아</div>
+<div id="obj">캠핑 가자</div>
+
+</body>
+</html>
