@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(name,age) {
+        document.write("test : " +name + "," + age + "세")
+    }
+    function test2(){
+        var name = arguments[0];
+        var age = arguments[1];
+        document.write("test2 : " + name + "," + age + "세")
+    }
+    // test('홍길동',28)
+    // test('이순신')
+    test2('강감찬',28)
+</script>
+</body>
+</html>

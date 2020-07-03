@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function init() {
+            window.p = document.getElementById('p')
+            p.onmouseover = over;
+            p.onmouseout = out;
+        }
+        function over(event){
+            p.style.backgroundColor = 'orchid'
+            console.dir(event)
+        }
+        function out(event){
+            p.style.backgroundColor = 'white'
+            console.dir(event)
+        }
+        window.onload = init;
+    </script>
+</head>
+<body>
+<h2>DOM 객체의 이벤트 리스너 프로퍼티에 함수 등록</h2>
+<p id="p">마우스를 올리면 색이 변경된다</p>
+</body>
+</html>
