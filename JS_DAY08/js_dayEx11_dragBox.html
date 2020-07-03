@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.obj {
+            border: 5px solid darkred;
+            color: darkred;
+            border-radius: 5px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            font-size: 18pt;
+            text-align: center;
+            line-height: 120px;
+            box-shadow: 5px 5px 5px navy;
+            transition: background-color .5s;
+        }
+
+        div.target {
+            border: 1px dotted gray;
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+    <script>
+        function Box(x,y,value) {
+            this.obj = document.createElement('div');
+            this.obj.innerText = value;
+            this.obj.className = 'obj';
+            this.obj.style.left = x + "px"
+            this.obj.style.top = y + "px"
+            this.obj.datavalue = value;
+            document.body.appendChild(this.obj);
+            this.target = document.getElementsByClassName('target')[0];
+            console.log(this.target.offsetLeft, this.target.offsetTop);
+            this.obj.onmousedown = (e) => {
+                this.obj.xgap = e.clientX - this.obj.offsetLeft;
+                this.obj.ygap = e.clientY - this.obj.offsetTop;
+                window.onmousemove = (e2) => {
+                    this.obj.style.left = (e2.clientX - this.obj.xgap) + 'px';
+                    this.obj.style.top = (e2.clientY - this.obj.ygap) + 'px';
+                };
+            };
+            this.obj.onmouseup = (e) => {
+                window.onmousemove = null;
+                this.cX = this.obj.offsetLeft + (this.obj.offsetWidth / 2);
+                this.cY = this.obj.offsetTop + (this.obj.offsetHeight / 2);
+
+                if ((this.cX >= this.target.offsetLeft && this.cX <= (this.target.offsetLeft + 130)) && (this.cY >= this.target.offsetTop && this.cY <= (this.target.offsetTop + 130))) {
+                    this.obj.style.left = this.target.offsetLeft + 'px';
+                    this.obj.style.top = this.target.offsetTop + 'px';
+                    document.body.bgColor = this.obj.datavalue;
+                } else {
+                    document.body.bgColor = 'white'
+                }
+            }
+        }
+
+        window.onload = function () {
+            new Box(100,100,'blue');
+            new Box(100,250,'brown');
+            new Box(100,450,'green');
+        }
+    </script>
+
+</head>
+<body>
+<div class="target">가즈아</div>
+
+</body>
+</html>
