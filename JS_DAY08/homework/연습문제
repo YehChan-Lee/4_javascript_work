@@ -1,0 +1,10 @@
+1. 3번
+2. 3번
+
+4.(1)var obj = document.getElementById('div1')
+(2)obj.addEventListener('onclick',f())
+(3)obj.onclick = f;
+(4)obj.onclick = function f(){
+    obj.style.backgroundColor = "orchid"
+}
+5. 1번
