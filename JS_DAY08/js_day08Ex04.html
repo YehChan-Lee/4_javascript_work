@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test() {
+        var cnt = 0;
+        let fn = setInterval(()=>{
+            console.dir(this)
+            cnt++;
+            if(cnt == 5) clearInterval(fn)
+        },500)
+    }
+    new test();
+
+</script>
+</body>
+</html>
