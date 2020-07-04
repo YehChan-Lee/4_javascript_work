@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>마우스 휠을 이용한 이미지 확대/축소</h3>
+<hr>
+<p>이미지 위에 휠을 위로 굴리면 이미지가 축소되고 아래로 굴리면 이미지가 확대됩니다.</p>
+<img src="imgs/2.png" width="50" height="50" alt="">
+<script>
+    var imgbox = document.getElementsByTagName('img')[0]
+    imgbox.onwheel = function (e) {
+        if(e.wheelDelta < 0){
+            this.width = 1.05 * this.width;
+            this.height= 1.05 * this.height;
+        }else{
+            this.width = 0.95 * this.width;
+            this.height= 0.95 * this.height;
+        }
+    }
+</script>
+</body>
+</html>
