@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>라디오 버튼을 클릭하면 이미지를 출력합니다.</h3>
+    <hr>
+    <form>
+        <input type="radio" name="pocket" value="1">이상해씨
+        <input type="radio" name="pocket" value="2">망나뇽
+        <input type="radio" name="pocket" value="3">메타몽
+        <div id="img"></div>
+    </form>
+    <script>
+        var radio = document.getElementsByName('pocket');
+        var imgbox = document.getElementById('img');
+        radio[0].onclick = function () {
+            console.log(this)
+            imgbox.style.background = 'url(imgs/1.png) no-repeat'
+            imgbox.style.backgroundSize = "100px 100px"
+        }
+        radio[1].onclick = function () {
+            imgbox.style.background = 'url(imgs/2.png) no-repeat'
+            imgbox.style.backgroundSize = "100px 100px"
+        }
+        radio[2].onclick = function () {
+            imgbox.style.background = 'url(imgs/3.png) no-repeat'
+            imgbox.style.backgroundSize = "100px 100px"
+        }
+
+    </script>
+</body>
+</html>
