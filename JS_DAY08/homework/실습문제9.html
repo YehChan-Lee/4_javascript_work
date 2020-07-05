@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div {
+            position: absolute;
+            background-color: aliceblue;
+        }
+    </style>
 </head>
 <body>
-
+<h3>아이템에 마우스를 올리면 설명 출력</h3>
+<hr>
+<p>여름 방학 때 하고 싶은 것들</p>
+<ul>
+    <li>자전거로 대한민국 일주</li>
+    <li>책 100권 읽기</li>
+    <li>철인 3종 경기 출전</li>
+    <li>자바스크립트</li>
+</ul>
+<script>
+    var lilist = document.getElementsByTagName('li');
+    var str = ["빨간 자전거를 타고 서울부터 부산을 간다", "종류별로 책 100권 읽기", "철인 3종경기 출전하기", "자바스크립트 정독"]
+    for (var i in lilist, str) {
+        var divbox = document.createElement('div')
+        document.body.appendChild(divbox);
+        lilist[i].idx = i;
+    }
+    window.onmouseover = function (e) {
+        if(e.target.tagName == "LI") {
+            e.target.onmouseover = function (e2) {
+                divbox.innerText = str[this.idx];
+                divbox.style.visibility = 'visible'
+                divbox.style.left = (e2.clientX) + 'px';
+                divbox.style.top = (e2.clientY) + 'px';
+            }
+            e.target.onmouseout = function () {
+                divbox.style.visibility = 'hidden'
+                divbox.innerText = "";
+            }
+        }
+    }
+</script>
 </body>
 </html>

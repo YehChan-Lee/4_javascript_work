@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            width: 240px;
+        }
+
+        button {
+            width: 60px;
+            height: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h3>계산기 만들기</h3>
+<hr>
+<input type="text" id="inputBox">
+<table>
+    <tr>
+        <td>
+            <button value="back" id="back">BACK</button>
+        </td>
+        <td>
+            <button value="clear" class = "clear">CE</button>
+        </td>
+        <td>
+            <button value="clear" class = "clear">C</button>
+        </td>
+        <td>
+            <button value="=" id="result">=</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button value="7">7</button>
+        </td>
+        <td>
+            <button value="8">8</button>
+        </td>
+        <td>
+            <button value="9">9</button>
+        </td>
+        <td>
+            <button value="/">/</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button value="4">4</button>
+        </td>
+        <td>
+            <button value="5">5</button>
+        </td>
+        <td>
+            <button value="6">6</button>
+        </td>
+        <td>
+            <button value="*">*</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button value="1">1</button>
+        </td>
+        <td>
+            <button value="2">2</button>
+        </td>
+        <td>
+            <button value="3">3</button>
+        </td>
+        <td>
+            <button value="-">-</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button value="0">0</button>
+        </td>
+        <td>
+            <button value="+">+</button>
+        </td>
+        <td>
+            <button value="">NONE</button>
+        </td>
+        <td>
+            <button value="">NONE</button>
+        </td>
+    </tr>
+</table>
+<script>
+    var btn = document.getElementsByTagName('button');
+    var resultbtn = document.getElementById('result');
+    var inputBox = document.getElementById('inputBox');
+    var clearBtn = document.getElementsByClassName('clear');
+    var backBtn = document.getElementById('back');
+
+    for (var i in btn) {
+        btn[i].onclick = function () {
+            console.log(this.value)
+            if (this.value != "back" || this.value != "clear" || this.value != "=" || this.value != "") {
+                inputBox.value += this.value;
+            }else {
+                return;
+            }
+        }
+    }
+    resultbtn.onclick = function () {
+        inputBox.value = eval(inputBox.value);
+    }
+    for(var i in clearBtn){
+        clearBtn[i].onclick = function () {
+            inputBox.value = "";
+        }
+    }
+    backBtn.onclick = function () {
+        inputBox.value = inputBox.value.slice(0,inputBox.value.length-1);
+    }
+</script>
+</body>
+</html>
