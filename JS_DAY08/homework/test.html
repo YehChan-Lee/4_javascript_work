@@ -5,24 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-    <button id="button">테스트</button>
+    <h3>이벤트 흐름</h3>
+    <hr>
+    <p id="p">이벤트가 어디서 시작하여 어디로 흘러가는지
+    <strong id="strong">이벤트 흐름</strong>
+    을 아는 것은 매우 중요하다</p>
     <script>
-        var button = document.getElementById('button');
-        // button.addEventListener('click', function () {
-        //     console.log(this)
-        //     alert("one")
-        // });
-        button.onclick = function () {
-            this.innerHTML = "hello"
+        var strong = document.getElementById('strong');
+        var p = document.getElementById('p');
+        strong.onclick = function () {
+            alert("Strong + 이벤트 흐름")
         }
-        // button.onclick = function (e) {
-        //     this.innerHTML = "hello"
-        // }
-        // button.onclick = f;
-        // function f() {
-        //     this.innerHTML = "hello"
-        // }
-
+        p.addEventListener("click",function () {
+            alert("p+이벤트 흐름")
+        },true)
     </script>
 </body>
 </html>
